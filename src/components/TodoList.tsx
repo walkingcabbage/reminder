@@ -1,14 +1,22 @@
 import type { Todo } from "../types/todo";
+import TodoItem from "./TodoItem";
 
-type TodoListProps = {
+type Props = {
   todos: Todo[];
+  onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
 };
 
-function TodoList({ todos }: TodoListProps) {
+function TodoList({ todos, onToggle, onDelete }: Props) {
   return (
     <div>
       {todos.map((todo) => (
-        <div key={todo.id}>{todo.text}</div>
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onToggle={onToggle}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );
